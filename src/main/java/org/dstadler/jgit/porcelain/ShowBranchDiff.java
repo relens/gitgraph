@@ -1,19 +1,22 @@
 package org.dstadler.jgit.porcelain;
 
+import java.io.IOException;
+import java.util.List;
+
 /*
-   Copyright 2013, 2014 Dominik Stadler
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ * Copyright 2013, 2014 Dominik Stadler
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 import org.dstadler.jgit.helper.CookbookHelper;
@@ -31,9 +34,6 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
 
-import java.io.IOException;
-import java.util.List;
-
 
 
 /**
@@ -46,7 +46,7 @@ public class ShowBranchDiff {
     public static void main(String[] args) throws IOException, GitAPIException {
         try (Repository repository = CookbookHelper.openJGitCookbookRepository()) {
             try (Git git = new Git(repository)) {
-                if(repository.exactRef("refs/heads/testbranch") == null) {
+                if (repository.exactRef("refs/heads/testbranch") == null) {
                     // first we need to ensure that the remote branch is visible locally
                     Ref ref = git.branchCreate().setName("testbranch").setStartPoint("origin/testbranch").call();
 
